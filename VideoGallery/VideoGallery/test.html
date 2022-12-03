@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand-title">VIDEO GALLERY : HOME</div>
+        <a href="#" class="toggle-button">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+          <ul>
+            <li><a href="family.html">FAMILY VIDEOS</a></li>
+            <li><a href="sports.html">SPORTS VIDEOS</a></li>
+            <li><a href="music.html">MUSIC VIDEOS</a></li>
+            <li><a href="travel.html">TRAVEL VIDEOS</a></li>
+            <li><a href="films.html">FILMS</a></li>
+          </ul>
+        </div>
+      </nav>
+
+
+    <div class="container">
+
+        <h1>Top Videos</h1>
+
+        <div class="video-container">
+            <div class="video"><video src="/media/family/Family-1.mp4" muted></video><h3 style="color: white; font-family:Arial, Helvetica, sans-serif;">Kids Smiling</h3></div>
+            <div class="video"><video src="/media/family/Family-2.mp4" muted></video><h3 style="color: white;">Children Flying balloons</h3></div>
+            <div class="video"><video src="/media/family/Family-3.mp4" muted></video><h3 style="color: white;">Childish Paintings</h3></div>
+            <div class="video"><video src="/media/sports/sports-1.mp4" muted></video><h3 style="color: white;">Car Drifts: Motorsports</h3></div>
+            <div class="video"><video src="/media/sports/sports-2.mp4" muted></video><h3 style="color: white;">Skating in Town Square</h3></div>
+            <div class="video"><video src="/media/sports/sports-3.mp4" muted></video><h3 style="color: white;">Playing Soccer</h3></div>
+
+        </div>
+
+        <div class="popup-video">
+            <span>&times;</span>
+            <video src="/media/family/Family-1.mp4" muted autoplay controls></video>
+        </div>
+
+    </div>
+    <script>
+
+        document.querySelectorAll(".video-container video").forEach(vid => {
+            vid.onclick = () => {
+                document.querySelector(".popup-video").style.display = "block";
+                document.querySelector(".popup-video video").src = vid.getAttribute("src");
+            }
+        });
+
+        document.querySelector(".popup-video span").onclick = () =>{
+            document.querySelector(".popup-video").style.display = "none";
+        }
+
+        const toggleButton = document.getElementsByClassName('toggle-button')[0]
+const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+toggleButton.addEventListener('click', () => {
+  navbarLinks.classList.toggle('active')
+})
+
+    </script>
+    
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
